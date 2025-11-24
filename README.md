@@ -6,20 +6,36 @@ A fully functional e-commerce application with Django, PostgreSQL (Render cloud)
 
 ### ⚠️ IMPORTANT: First-Time Setup (DO THIS FIRST!)
 
-**After cloning, run the setup script:**
+**🚨 CRITICAL: After cloning, you MUST configure `.env` file or the app won't work!**
 
+Without `.env` file, you'll get **403 Forbidden** errors when clicking "Buy Now".
+
+**Option 1: Interactive Setup (Recommended)**
 ```bash
 python setup_project.py
 ```
 
-This interactive script will:
-1. ✅ Guide you through creating the `.env` file
-2. ✅ Ask for database credentials (get from team lead)
+This will:
+1. ✅ Create `.env` file automatically
+2. ✅ Ask for database credentials
 3. ✅ Ask for Stripe API keys
-4. ✅ Create the configuration automatically
-5. ✅ Show you the next steps
+4. ✅ Guide you through setup
 
-**No manual setup needed** - The setup script handles everything!
+**Option 2: Manual Setup**
+```bash
+# Copy template
+cp env.example .env    # Linux/macOS
+copy env.example .env  # Windows
+
+# Edit .env file and add:
+# - Database credentials (from team lead)
+# - Stripe keys (from https://dashboard.stripe.com/test/apikeys)
+```
+
+**Why this is required:**
+- `.env` file is NOT in Git (for security)
+- Contains database credentials and Stripe keys
+- App will fail without it (403 errors on checkout)
 
 ### Running the Project
 
@@ -48,6 +64,21 @@ python run.py
 ```
 
 Visit: **http://localhost:8000**
+
+---
+
+## 🚨 Troubleshooting "Buy Now" Button Issues
+
+**Error: 403 Forbidden or "Unexpected token '<'..."**
+
+**Cause**: `.env` file is missing or Stripe keys not configured
+
+**Fix**:
+1. Verify `.env` file exists in project root
+2. Check `.env` has your Stripe keys
+3. Restart server after editing `.env`
+
+**See [AFTER_CLONE_README.md](AFTER_CLONE_README.md) for detailed first-time setup!**
 
 ---
 
