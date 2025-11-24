@@ -2,6 +2,8 @@
 
 A fully functional e-commerce application with Django, PostgreSQL (Render cloud), and Stripe payment integration.
 
+clone the repo- https://github.com/Shivani-Chauhan-Dev/stripe_e_commerce_project.git
+
 ## 🚀 Quick Start (After Cloning)
 
 ### ⚠️ IMPORTANT: First-Time Setup (DO THIS FIRST!)
@@ -27,11 +29,6 @@ nano .env
 code .env    # VS Code
 vim .env     # Vim
 ```
-
-**Why this is required:**
-- `.env` file is NOT in Git (for security)
-- Contains database credentials and Stripe keys
-- App will fail without it (403 errors on checkout)
 
 ### Running the Project
 
@@ -63,21 +60,6 @@ Visit: **http://localhost:8000**
 
 ---
 
-## 🚨 Troubleshooting "Buy Now" Button Issues
-
-**Error: 403 Forbidden or "Unexpected token '<'..."**
-
-**Cause**: `.env` file is missing or Stripe keys not configured
-
-**Fix**:
-1. Verify `.env` file exists in project root
-2. Check `.env` has your Stripe keys
-3. Restart server after editing `.env`
-
-**See [AFTER_CLONE_README.md](AFTER_CLONE_README.md) for detailed first-time setup!**
-
----
-
 ## ✨ Features
 
 - 🛍️ Product catalog with 3 pre-loaded products
@@ -88,35 +70,6 @@ Visit: **http://localhost:8000**
 - ☁️ Cloud PostgreSQL (Render)
 - 🐳 Docker support
 
----
-
----
-
-## 📤 For Team Leads: Sharing Environment Config
-
-**Just share your `.env` file content directly with team members via Slack/Email**
-
-Team members will:
-1. Create `.env` file in project root
-2. Paste the content you sent
-3. Run the project
-
-**Security note:** Share via secure channels only (Slack DM, encrypted email, password manager)
-
----
-
-## 🔑 Getting Stripe Keys
-
-1. Go to: https://dashboard.stripe.com/register
-2. Sign up (free)
-3. Switch to **Test Mode** (toggle top-right)
-4. Go to: **Developers** → **API keys**
-5. Copy:
-   - **Publishable key** (pk_test_...)
-   - **Secret key** (sk_test_...)
-6. Add them to `.env` file
-
----
 
 ## 💳 Test Payment
 
@@ -145,30 +98,7 @@ stripe_e_commerce_project/
 ├── env.example           # Environment template (in Git)
 ├── .env                  # Your config (created by setup_project.py)
 └── README.md             # This file
-```
 
----
-
-## 🛠️ Common Commands
-
-```bash
-# Start server
-python run.py
-
-# Create admin user
-python create_admin.py
-
-# Run migrations
-python manage.py migrate
-
-# Django shell
-python manage.py shell
-
-# Access admin panel
-# http://localhost:8000/admin
-```
-
----
 
 ## 🐳 Docker (Alternative)
 
@@ -185,70 +115,12 @@ docker-compose exec web python manage.py migrate
 
 # Create admin
 docker-compose exec web python manage.py createsuperuser
-```
 
----
-
-## ❓ Troubleshooting
-
-### "Connection to server at localhost failed" / "password authentication failed for user postgres"
-
-**Problem**: `.env` file is missing (common after cloning)
-
-**Solution:**
-
-**Option 1: Use Setup Script (Easiest)**
-```bash
-python setup_project.py
-# Follow the interactive prompts
-```
-
-**Option 2: Manual Setup**
-1. Copy: `cp env.example .env`
-2. Get database credentials from team lead
-3. Edit `.env` with credentials and Stripe keys
-
-**Why this happens:**
-- `.env` file is NOT in Git (for security)
-- After cloning, the `.env` file doesn't exist
-- Without `.env`, Django tries to connect to `localhost`
-- You need actual database credentials from your team to connect!
-
-### "Stripe authentication failed"
-
-**Problem**: Stripe keys not configured
-
-**Solution**:
-1. Get keys from https://dashboard.stripe.com/test/apikeys
-2. Update `STRIPE_PUBLIC_KEY` and `STRIPE_SECRET_KEY` in `.env`
-3. Restart server
-
-### "No module named django"
-
-**Problem**: Virtual environment not activated or dependencies not installed
-
-**Solution**:
-```bash
-source venv/bin/activate  # Linux/Mac
-pip install -r requirements.txt
-```
-
----
-
-## 🔐 Security
-
-- ✅ `.env` file is in `.gitignore` (never commit it!)
-- ✅ Use test mode Stripe keys for development
-- ✅ Database credentials shared securely (not in Git)
-- ✅ Unique session IDs prevent double payments
-
----
 
 ## 📊 Database
 
 **Provider**: Render (Cloud PostgreSQL)
 **Location**: Singapore
-**Connection**: Configured in `.env.example`
 
 ---
 
@@ -266,17 +138,7 @@ pip install -r requirements.txt
 - ✅ Docker support
 - ✅ Platform-independent
 
----
 
-## 📞 Support
-
-For issues:
-1. Check `.env` file exists and has correct values
-2. Verify virtual environment is activated
-3. Ensure all dependencies are installed
-4. Check Django logs for detailed errors
-
----
 
 ## 🚀 Tech Stack
 
