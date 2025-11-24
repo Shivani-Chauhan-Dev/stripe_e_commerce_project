@@ -4,43 +4,46 @@ A fully functional e-commerce application with Django, PostgreSQL (Render cloud)
 
 ## 🚀 Quick Start (After Cloning)
 
-### ⚠️ IMPORTANT: First-Time Setup
+### ⚠️ IMPORTANT: First-Time Setup (DO THIS FIRST!)
 
-After cloning this repository, you **MUST** create a `.env` file:
+**After cloning, run the setup script:**
 
 ```bash
-# 1. Copy the environment template file
-cp env_template.txt .env
-
-# 2. The .env file already has the database credentials
-#    You only need to add your Stripe keys:
-#    - Edit .env
-#    - Replace STRIPE_PUBLIC_KEY with your key from https://dashboard.stripe.com/test/apikeys
-#    - Replace STRIPE_SECRET_KEY with your key
+python setup_project.py
 ```
+
+This interactive script will:
+1. ✅ Guide you through creating the `.env` file
+2. ✅ Ask for database credentials (get from team lead)
+3. ✅ Ask for Stripe API keys
+4. ✅ Create the configuration automatically
+5. ✅ Show you the next steps
+
+**No manual setup needed** - The setup script handles everything!
 
 ### Running the Project
 
 ```bash
-# 1. Create virtual environment
+# 1. Run setup script (creates .env with your credentials)
+python setup_project.py
+
+# 2. Create virtual environment
 python -m venv venv
 
-# 2. Activate virtual environment
-# Linux/Mac:
-source venv/bin/activate
-# Windows:
-venv\Scripts\activate
+# 3. Activate virtual environment
+source venv/bin/activate        # Linux/macOS
+venv\Scripts\activate           # Windows
 
-# 3. Install dependencies
+# 4. Install dependencies
 pip install -r requirements.txt
 
-# 4. Run migrations
+# 5. Run migrations
 python manage.py migrate
 
-# 5. Create admin user
+# 6. Create admin user
 python create_admin.py
 
-# 6. Start server
+# 7. Start server
 python run.py
 ```
 
@@ -96,7 +99,9 @@ stripe_e_commerce_project/
 ├── run.py                 # Start server script
 ├── create_admin.py        # Create admin user script
 ├── requirements.txt       # Python dependencies
-├── env_template.txt      # Environment template
+├── setup_project.py      # Setup script (run after cloning)
+├── env.example           # Environment template (in Git)
+├── .env                  # Your config (created by setup_project.py)
 └── README.md             # This file
 ```
 
@@ -126,8 +131,9 @@ python manage.py shell
 ## 🐳 Docker (Alternative)
 
 ```bash
-# Create .env file first!
-cp env_template.txt .env
+# Create .env file first
+cp env.example .env
+# Edit .env with database credentials and Stripe keys
 
 # Start with Docker
 docker-compose up
@@ -143,16 +149,28 @@ docker-compose exec web python manage.py createsuperuser
 
 ## ❓ Troubleshooting
 
-### "Connection to server at localhost failed"
+### "Connection to server at localhost failed" / "password authentication failed for user postgres"
 
-**Problem**: `.env` file is missing
+**Problem**: `.env` file is missing (common after cloning)
 
-**Solution**:
+**Solution:**
+
+**Option 1: Use Setup Script (Easiest)**
 ```bash
-cp env_template.txt .env
-# Database credentials are already in the file
-# Just add your Stripe keys
+python setup_project.py
+# Follow the interactive prompts
 ```
+
+**Option 2: Manual Setup**
+1. Copy: `cp env.example .env`
+2. Get database credentials from team lead
+3. Edit `.env` with credentials and Stripe keys
+
+**Why this happens:**
+- `.env` file is NOT in Git (for security)
+- After cloning, the `.env` file doesn't exist
+- Without `.env`, Django tries to connect to `localhost`
+- You need actual database credentials from your team to connect!
 
 ### "Stripe authentication failed"
 
@@ -179,7 +197,7 @@ pip install -r requirements.txt
 
 - ✅ `.env` file is in `.gitignore` (never commit it!)
 - ✅ Use test mode Stripe keys for development
-- ✅ Cloud database credentials included in `env_template.txt`
+- ✅ Database credentials shared securely (not in Git)
 - ✅ Unique session IDs prevent double payments
 
 ---
