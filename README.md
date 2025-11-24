@@ -12,23 +12,25 @@ clone the repo- https://github.com/Shivani-Chauhan-Dev/stripe_e_commerce_project
 
 Without `.env` file, you'll get **403 Forbidden** errors when clicking "Buy Now".
 
-**Step 1: Get the `.env` file content from your team lead** (via Slack/Email)
-
-**Step 2: Create `.env` file and paste the content**
+**Step 1: Create `.env` file from the example**
 
 ```bash
-# Windows (PowerShell/CMD)
-notepad .env
-# Paste the content, save and close
+# Copy the example file
+cp env.example .env      # Linux/macOS
+copy env.example .env    # Windows
 
-# Linux/macOS
-nano .env
-# Paste the content, press Ctrl+X, Y, Enter
-
-# Or use any text editor
-code .env    # VS Code
-vim .env     # Vim
+# Or manually create .env file
+notepad .env             # Windows
+nano .env                # Linux/macOS
+code .env                # VS Code
 ```
+
+**Step 2: Fill in the actual values**
+
+Open `.env` file and replace the placeholder values with:
+- **Database credentials** (get from team lead or Render dashboard)
+- **Stripe API keys** (get from https://dashboard.stripe.com/test/apikeys)
+- **Django SECRET_KEY** (generate a new one or get from team lead)
 
 ### Running the Project
 
@@ -94,9 +96,8 @@ stripe_e_commerce_project/
 ├── run.py                 # Start server script
 ├── create_admin.py        # Create admin user script
 ├── requirements.txt       # Python dependencies
-├── setup_project.py      # Setup script (run after cloning)
-├── env.example           # Environment template (in Git)
-├── .env                  # Your config (created by setup_project.py)
+├── env.example           # Environment variables template
+├── .env                  # Your actual config (create from env.example)
 └── README.md             # This file
 
 
@@ -139,6 +140,41 @@ docker-compose exec web python manage.py createsuperuser
 - ✅ Platform-independent
 
 
+
+## 🔑 How to Get Required Keys
+
+### Stripe API Keys
+
+1. Go to: https://dashboard.stripe.com/register
+2. Sign up (free account)
+3. Switch to **Test Mode** (toggle in top-right)
+4. Go to: **Developers** → **API keys**
+5. Copy:
+   - **Publishable key** (starts with `pk_test_...`)
+   - **Secret key** (starts with `sk_test_...`)
+6. Paste them into `.env` file
+
+### Django SECRET_KEY
+
+Generate a secure random key:
+
+```python
+# Option 1: Using Django
+python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
+
+# Option 2: Using Python
+python -c "import secrets; print(secrets.token_urlsafe(50))"
+```
+
+Copy the output and paste it into `.env` as `SECRET_KEY`
+
+### Database Credentials
+
+Get these from:
+- **Your team lead** (if joining existing project)
+- **Render dashboard** (if you created the database)
+
+---
 
 ## 🚀 Tech Stack
 
