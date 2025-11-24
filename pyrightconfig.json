@@ -1,0 +1,20 @@
+{
+    "include": [
+        "shop",
+        "stripe_shop"
+    ],
+    "exclude": [
+        "**/__pycache__",
+        "**/node_modules",
+        ".venv",
+        "venv"
+    ],
+    "venvPath": ".",
+    "venv": "venv",
+    "reportMissingImports": false,
+    "reportMissingTypeStubs": false,
+    "pythonVersion": "3.11",
+    "pythonPlatform": "Windows"
+}
+
+
