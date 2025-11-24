@@ -6,30 +6,26 @@ A fully functional e-commerce application with Django, PostgreSQL (Render cloud)
 
 ### ⚠️ IMPORTANT: First-Time Setup (DO THIS FIRST!)
 
-**🚨 CRITICAL: After cloning, you MUST configure `.env` file or the app won't work!**
+**🚨 CRITICAL: After cloning, you MUST create `.env` file or the app won't work!**
 
 Without `.env` file, you'll get **403 Forbidden** errors when clicking "Buy Now".
 
-**Option 1: Interactive Setup (Recommended)**
+**Step 1: Get the `.env` file content from your team lead** (via Slack/Email)
+
+**Step 2: Create `.env` file and paste the content**
+
 ```bash
-python setup_project.py
-```
+# Windows (PowerShell/CMD)
+notepad .env
+# Paste the content, save and close
 
-This will:
-1. ✅ Create `.env` file automatically
-2. ✅ Ask for database credentials
-3. ✅ Ask for Stripe API keys
-4. ✅ Guide you through setup
+# Linux/macOS
+nano .env
+# Paste the content, press Ctrl+X, Y, Enter
 
-**Option 2: Manual Setup**
-```bash
-# Copy template
-cp env.example .env    # Linux/macOS
-copy env.example .env  # Windows
-
-# Edit .env file and add:
-# - Database credentials (from team lead)
-# - Stripe keys (from https://dashboard.stripe.com/test/apikeys)
+# Or use any text editor
+code .env    # VS Code
+vim .env     # Vim
 ```
 
 **Why this is required:**
@@ -40,8 +36,8 @@ copy env.example .env  # Windows
 ### Running the Project
 
 ```bash
-# 1. Run setup script (creates .env with your credentials)
-python setup_project.py
+# 1. Create .env file (paste content from team lead)
+# See above ☝️
 
 # 2. Create virtual environment
 python -m venv venv
@@ -91,6 +87,21 @@ Visit: **http://localhost:8000**
 - 🎨 Modern Bootstrap UI
 - ☁️ Cloud PostgreSQL (Render)
 - 🐳 Docker support
+
+---
+
+---
+
+## 📤 For Team Leads: Sharing Environment Config
+
+**Just share your `.env` file content directly with team members via Slack/Email**
+
+Team members will:
+1. Create `.env` file in project root
+2. Paste the content you sent
+3. Run the project
+
+**Security note:** Share via secure channels only (Slack DM, encrypted email, password manager)
 
 ---
 

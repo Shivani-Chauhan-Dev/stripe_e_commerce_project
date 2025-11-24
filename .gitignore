@@ -11,6 +11,9 @@ media/
 *.pot
 local_settings.py
 
-# Ignore all .md files except README.md
+# Ignore all .md files except important ones
 *.md
 !README.md
+!AFTER_CLONE_README.md
+!SETUP_GUIDE.md
+!TROUBLESHOOTING.md
